@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 function Main(){
 
     const [advice, setadvice] = useState("");
+    const [id, setid] = useState(0);
     useEffect(()=>{
         handleClick();
     },[])
@@ -23,17 +24,18 @@ function Main(){
         .then(response => response.json())
         .then((data) => {
             setadvice(data.slip.advice);
+            setid(data.slip.id);
         })
         .catch((error) =>{
             console.error("Error fetching advice:", error);
         });
-        console.log();
+
     }
 
     return(
         <div className="main">
             <div className="quoteSection">
-                <p>ADVICE #000</p>
+                <p>ADVICE #{id}</p>
                 <div className="quote" id="quote">
                     <h2>"{advice}"</h2>
                 </div>
